@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乳腺癌自动诊断系统</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>乳腺癌自动诊断系统</h1>
+
+        <!-- 上传区域 -->
+        <div class="upload-section">
+            <h2>上传PNG格式病理切片图像</h2>
+            <div class="upload-box" id="uploadBox">
+                <input type="file" id="fileInput" accept=".png" hidden>
+                <label for="fileInput" class="upload-label">
+                    <span>点击或拖放PNG文件到此处</span>
+                </label>
+            </div>
+            <button id="diagnoseBtn" class="btn" disabled>开始诊断</button>
+        </div>
+
+        <!-- 诊断结果区域 -->
+        <div class="result-section" id="resultSection" hidden>
+            <h2>诊断结果</h2>
+            <div class="result-content">
+                <div class="image-group">
+                    <div class="image-item">
+                        <h3>原始图像</h3>
+                        <img id="originalImage" src="" alt="原始图像">
+                    </div>
+                    <div class="image-item">
+                        <h3>模型关注区域（热力图）</h3>
+                        <img id="heatmapImage" src="" alt="热力图">
+                    </div>
+                </div>
+                <div class="diagnosis-info">
+                    <p><strong>诊断结果：</strong><span id="diagnosisResult" class="diagnosis-text"></span></p>
+                    <p><strong>置信度：</strong><span id="confidence" class="confidence-text"></span></p>
+                    <p><strong>上传时间：</strong><span id="uploadTime"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 历史记录区域 -->
+        <div class="history-section">
+            <h2>诊断历史记录</h2>
+            <table id="historyTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>上传时间</th>
+                        <th>诊断结果</th>
+                        <th>置信度</th>
+                        <th>操作1</th>
+                        <th>操作2</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <!-- 历史记录将通过JS动态加载 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
