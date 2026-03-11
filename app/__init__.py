@@ -24,7 +24,7 @@ def create_app():
     db.init_app(app)
 
 
-    # ---------------------- 延迟导入蓝图（核心解决循环导入） ----------------------
+    # ---------------------- 延迟导入蓝图（解决循环导入） ----------------------
     from app.routes.index import index_bp
     from app.routes.upload import upload_bp
     from app.routes.records import records_bp
