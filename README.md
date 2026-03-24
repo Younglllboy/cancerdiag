@@ -6,3 +6,16 @@
 热力图存储位置：app/static/uploads/heatmaps
 运行/model/train.py训练模型，存储位置：app/static/model/best_model.pth
 修改config.py的数据库password，创建cancerbreast数据库，建表命名为detection_records，列名参照app/models/record.py
+需创建独立conda环境，使用的包如下
+flask==2.0.1
+flask-sqlalchemy==2.5.1
+mysql-connector-python==8.2.0
+torch==2.1.2+cu128
+torchvision==0.16.2+cu128
+pillow==10.2.0
+scikit-learn==1.3.2
+matplotlib==3.8.2
+numpy==1.26.3
+tqdm==4.66.1
+grad-cam==1.4.6
+python-dotenv==1.0.0
