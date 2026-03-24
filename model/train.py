@@ -68,9 +68,9 @@ def validate(model, loader, criterion, device):
     return avg_loss, acc, recall, f1, auc
 
 
-# ---------------------- 2. 主训练逻辑放入保护块（核心修改）----------------------
+# ---------------------- 2. 主训练逻辑放入保护块----------------------
 if __name__ == '__main__':
-    # 数据预处理与增强（移到保护块内）
+    # 数据预处理与增强
     train_transform = transforms.Compose([
         transforms.Resize((config.IMAGE_SIZE, config.IMAGE_SIZE)),
         transforms.RandomHorizontalFlip(p=0.5),
@@ -85,7 +85,7 @@ if __name__ == '__main__':
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
 
-    # 加载数据集（移到保护块内）
+    # 加载数据集
     train_dataset = datasets.ImageFolder(
         root=os.path.join(config.DATASET_SPLIT_ROOT, 'train'),
         transform=train_transform
@@ -95,11 +95,11 @@ if __name__ == '__main__':
         transform=val_test_transform
     )
 
-    # 保留多进程（num_workers=4 可根据CPU核心数调整）
+    # 保留多进程（num_workers=4 ）
     train_loader = DataLoader(train_dataset, batch_size=config.BATCH_SIZE, shuffle=True, num_workers=4)
     val_loader = DataLoader(val_dataset, batch_size=config.BATCH_SIZE, shuffle=False, num_workers=4)
 
-    # 初始化模型、损失函数、优化器（移到保护块内）
+    # 初始化模型、损失函数、优化器
     model = SEResNet50().to(config.DEVICE)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(
@@ -109,11 +109,11 @@ if __name__ == '__main__':
     )
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, factor=0.5)
 
-    # 早停机制（移到保护块内）
+    # 早停机制
     best_val_auc = 0.0
     patience_counter = 0
 
-    # 训练主循环（移到保护块内）
+    # 训练主循环
     print("开始训练模型...")
     for epoch in range(config.EPOCHS):
         print(f"\nEpoch {epoch + 1}/{config.EPOCHS}")
