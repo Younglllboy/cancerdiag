@@ -65,7 +65,7 @@ if __name__ == '__main__':
             all_probs.extend(probs)
 
     # ---------------------- 核心修改2：完善恶性数据的混淆矩阵分析 ----------------------
-    # 1. 基础指标（保留原有）
+    # 1. 基础指标
     acc = accuracy_score(all_labels, all_preds)
     recall_weighted = recall_score(all_labels, all_preds, average='weighted')
     f1_weighted = f1_score(all_labels, all_preds, average='weighted')
