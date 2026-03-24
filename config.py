@@ -12,7 +12,7 @@ HEATMAP_FOLDER = os.path.join(BASE_DIR, '', 'app/static', 'uploads', 'heatmaps')
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': '0127',
+    'password': '****',
     'database': 'cancerbreast',
     'port': 3306
 }
